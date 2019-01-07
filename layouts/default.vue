@@ -14,6 +14,7 @@
 
 <script>
   import MyHeader from '@/components/public/header/index.vue'
+
   import MyFooter from '@/components/public/footer/index.vue'
   export default {
     components:{
@@ -22,3 +23,7 @@
     }
   }
 </script>
+
+<style scoped lang="scss">
+  @import "@/assets/css/public/layout.scss";
+</style>

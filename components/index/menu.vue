@@ -5,7 +5,7 @@
       @mouseleave="mouseleave">
       <dt>全部分类</dt>
       <dd
-        v-for="(item,idx) in menu"
+        v-for="(item, idx) in menu"
         :key="idx"
         @mouseenter="enter">
         <i :class="item.type"/>{{ item.name }}<span class="arrow"/>
@@ -17,7 +17,7 @@
       @mouseenter="sover"
       @mouseleave="sout">
       <template 
-        v-for="(item,idx) in curdetail.child">
+        v-for="(item, idx) in curdetail.child">
         <h4 :key="idx">{{ item.title }}</h4>
         <span 
           v-for="v in item.child" 
@@ -58,13 +58,13 @@
     },
     computed: {
       curdetail () {
-        return this.menu.filter((item) => item.type===this.kind)[0]
+        return this.menu.filter((item) => item.type === this.kind)[0]
       }
     },
     methods: {
       mouseleave () {
         let self = this
-        self._timer=setTimeout(function(){
+        self._timer = setTimeout(function(){
           self.kind = ""
         }, 150)
       },
