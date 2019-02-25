@@ -115,7 +115,8 @@ export default {
             } else {
               callback()
             }
-          }
+          },
+          trigger: 'blur'
         }]
       }
     }
@@ -123,6 +124,34 @@ export default {
   layout: "blank",
   methods: {
     sendMsg() {
+      const self = this;
+      let namePass
+      let emailPass
+      if (self.timerid) {
+        return false
+      }
+      this.$refs['ruleForm'].validateField('name', (vaild) => {
+        namePass = vaild
+      })
+      self.statusMsg = ''
+      if (namePass) {
+        return false
+      }
+      this.$refs['ruleForm'].validateField('name', (vaild) => {
+        emailPass = vaild
+      })
+      if (!namePass&&!emailPass) {
+        self.$axios.post('/users/verify',{
+          username:encodeURIComponent(self.ruleForm.name),
+          email: self.ruleForm.email
+        }).then(({status, data}) => {
+          if (status === 200 && data && data.code === 0){
+            
+          }
+        })
+      }
+    },
+    register() {
 
     }
   }
