@@ -117,7 +117,7 @@ router.post('/verify', async (ctx, next) => {
     }
     return false
   }
-  let transport = nodeMailer.createTransport({
+  let transporter = nodeMailer.createTransport({
     host: Email.smtp.host,
     port: 587,
     secure: false,

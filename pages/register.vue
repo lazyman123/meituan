@@ -141,12 +141,20 @@ export default {
         emailPass = vaild
       })
       if (!namePass&&!emailPass) {
-        self.$axios.post('/users/verify',{
+        self.$axios.post('/users/verify', {
           username:encodeURIComponent(self.ruleForm.name),
           email: self.ruleForm.email
         }).then(({status, data}) => {
           if (status === 200 && data && data.code === 0){
-            
+            let count = 60;
+            self.timerid = setInterval(function() {
+              self.statusMsg = `验证码已发送，剩余${count--}秒`
+              if (count === 0) {
+                clearInterval(self.timerid)
+              }
+            }, 1000)
+          } else {
+            self.statusMsg = data.msg
           }
         })
       }
